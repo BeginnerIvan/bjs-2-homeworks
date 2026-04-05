@@ -87,3 +87,54 @@ class Library {
 
 	}
 }
+
+// task 3 
+
+class Student {
+	constructor(name) {
+		this.name = name;
+		this.marks = {};
+	}
+	addMark(mark, subject) {
+		if (mark < 2 || mark > 5) {
+			return;
+		}
+		if (this.marks[subject] === undefined) {
+			this.marks[subject] = [];
+		}
+		this.marks[subject].push(mark)
+	}
+	getAverageBySubject(subject) {
+		let average = 0;
+		if(this.marks[subject] === undefined || this.marks[subject].length === 0) {
+			return 0;
+		} 
+		average = this.marks[subject].reduce((acc, num) => acc + num, 0);
+		return average / this.marks[subject].length;
+	}
+	getAverage() {
+		let subject = Object.keys(this.marks);
+		let total = 0;
+		if(subject.length === 0) {
+			return 0;
+		}
+		for(let i = 0; i < subject.length; i++){
+		total += this.getAverageBySubject(subject[i]);
+		} return total / subject.length;
+	}
+}
+
+    
+// set state(state) {
+// 		if (state <= 0) {
+// 			this._state = 0;
+// 		} else if (state > 100) {
+// 			this._state = 100;
+// 		} else {
+// 			this._state = state;
+// 		}
+// 	}
+// 	get state() {
+// 		return this._state;
+// 	}
+    
